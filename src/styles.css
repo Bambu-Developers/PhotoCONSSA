@@ -7,3 +7,21 @@ body{
     font-family: Roboto;
     src: url('assets/Roboto/Roboto-Regular.ttf');
 }
+
+.desktop{
+    display: block;
+}
+
+.mobile{
+    display: none;
+}
+
+@media screen and (max-width: 400px) {
+    .desktop{
+        display: none;
+    }
+    
+    .mobile{
+        display: block;
+    }
+}

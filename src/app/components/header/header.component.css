@@ -41,3 +41,10 @@
     display: flex;
     justify-content: space-around;
 }   
+
+.header-mobile{
+    width:100%; 
+    background-color: #ed3079; 
+    height:56px; 
+    text-align: center;
+}
