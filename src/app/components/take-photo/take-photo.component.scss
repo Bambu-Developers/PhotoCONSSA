@@ -1,0 +1,24 @@
+.cs-take-image-webcam-container{
+    display: flex;
+    justify-content: center;
+}
+
+.cs-take-image-webcam-frame{
+    height: 720px;
+    width: 1133px;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: cover !important; 
+    position: absolute;
+    top: 0;
+    
+}
+.cs-take-image-frame-selections{
+    .cs-take-photo-frame-select-button{
+        width: 60px;
+        height: 60px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+}

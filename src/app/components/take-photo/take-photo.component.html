@@ -1,0 +1,16 @@
+<div class="cs-take-image-container">
+  <div class="cs-take-image-webcam-container">
+    <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+    <div *ngIf="selectedImageUrl" class="cs-take-image-webcam-frame" [ngStyle]="{'background-image' : 'url(' + selectedImageUrl + ')'}"></div>
+  </div>
+  <button (click)="takePhoto()" value="Take photo">Take photo</button>
+  <br>
+  <div class="cs-take-image-frame-selections">
+    <button *ngFor="let item of items | async" class="cs-take-photo-frame-select-button" [ngStyle]="{'background-image' : 'url(' + item.imageUrl + ')'}" (click)="selectFrame(item)">{{item.name}}</button>
+  </div>  
+
+  <!-- <div class="snapshot" *ngIf="webcamImage">
+    <img [src]="webcamImage.imageAsDataUrl"/>
+  </div> -->
+  <canvas #myCanvas></canvas>
+</div>
