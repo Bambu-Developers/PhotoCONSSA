@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material';
-import {MatFormFieldModule} from '@angular/material';
-import {MatInputModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material';
+import { MatInputModule, MatIconModule } from '@angular/material';
 
 // Angular Fire
 import { AngularFireModule } from 'angularfire2';
@@ -15,12 +18,11 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 
 // Webcam
-import {WebcamModule} from 'ngx-webcam';
+import { WebcamModule } from 'ngx-webcam';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LandingComponent } from './components/landing/landing.component';
-import { HttpModule } from '@angular/http'
 
 import { ConssaShareComponent } from './components/conssa-share/conssa-share.component';
 import { TakePhotoComponent } from './components/take-photo/take-photo.component';  
@@ -45,9 +47,11 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     HttpModule,
+    HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
-    WebcamModule
+    MatIconModule,
+    WebcamModule,
   ],
   declarations: [    
     AppComponent,

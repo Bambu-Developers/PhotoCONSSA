@@ -1,16 +1,49 @@
-<div class="cs-take-image-container">
-  <div class="cs-take-image-webcam-container">
-    <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
-    <div *ngIf="selectedImageUrl" class="cs-take-image-webcam-frame" [ngStyle]="{'background-image' : 'url(' + selectedImageUrl + ')'}"></div>
+<div class="cs-window-container">
+  <div class="cs-take-image-container">
+      <div class="cs-take-image-share-container" [ngClass]="{'hide': !isPhototaken()}">
+          <p class="cs-take-image-ready-message">Ready! Now you’ll have a souvenir of Mexican Fiesta!</p>
+          <a *ngIf="!facebookPostId && !sharingToFacebook" class="btn" (click)="fbCheck()">SHARE ON FACEBOOK</a>
+          <button *ngIf="!facebookPostId && sharingToFacebook" class="btn share-to-facebook-button" (click)="fbCheck()" [disabled]="true">
+            <div class="spinner">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+          </button>
+          <a *ngIf="facebookPostId" class="btn" [href]="'https://www.facebook.com/photo.php?fbid='+facebookPostId">DONE! CHECK YOUR POST</a>
+          <a class="btn compra" (click)="downloadPhoto($event.currentTarget)">DOWNLOAD MY PHOTO</a>
+          <label class="email-send" for="email">
+              <p>Email</p>
+              <input name="email" id="email" placeholder="">
+          </label>
+          <div class="cs-take-image-bottom-actions">
+            <button class="btn" (click)="photoTaken=false;facebookPostId=null;sharingToFacebook=false;">TAKE AGAIN</button>
+            <button class="btn acento">SEND</button>
+          </div>
+        </div>
+    <div class="cs-take-image-webcam-container" [ngClass]="{'hide': isPhototaken()}">
+      <div class="cs-take-image-background"></div>
+      <webcam *ngIf="selectedImageUrl" class="cs-take-image-webcam" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" (initError)="showErrorMessage($event)"></webcam>
+      <div *ngIf="selectedImageUrl" class="cs-take-image-webcam-frame" [ngStyle]="{'background-image' : 'url(' + selectedImageUrl + ')'}"></div>      
+      <img #image [src]="selectedImageUrl" [ngStyle]="{'display':'none'}" id="image">
+      <div *ngIf="hasCameraError" class="cs-take-image-webcam-error"><mat-icon svgIcon="alert"></mat-icon><p>Ups! No camera found. Please <a href="/takephoto">try again.</a></p></div>
+    </div>
+    <div class="cs-take-image-frame-selections" [ngClass]="{'hide': isPhototaken()}">
+        <div class="cs-take-image-frame-container cs-take-image-frame-left-container">
+        <button *ngFor="let item of selectedItems | slice:0:4;" class="cs-take-photo-frame-select-button" [ngStyle]="{'background-image' : 'url(' + item.imageUrl + ')'}" (click)="selectFrame(item)"></button>
+      </div>
+      <div class="cs-take-image-button-container" [ngClass]="{'disabled' : hasCameraError}">
+        <button class="cs-take-image-button" (click)="takePhoto()" [disabled]="hasCameraError" value="Take photo"><mat-icon svgIcon="camera"></mat-icon></button>
+      </div>
+      <div class="cs-take-image-frame-container cs-take-image-frame-right-container">
+      <button *ngFor="let item of selectedItems | slice:4:8;" class="cs-take-photo-frame-select-button" [ngStyle]="{'background-image' : 'url(' + item.imageUrl + ')'}" (click)="selectFrame(item)"></button>
+      </div>
+    </div>
+    <div class="cs-take-image-webcam-container canvas" [ngClass]="{'hide': !isPhototaken()}">
+      <canvas #myCanvas id="canvas"></canvas>
+    </div>      
+    <!-- <div class="snapshot" *ngIf="webcamImage">
+      <img [src]="webcamImage.imageAsDataUrl"/>
+    </div> -->
   </div>
-  <button (click)="takePhoto()" value="Take photo">Take photo</button>
-  <br>
-  <div class="cs-take-image-frame-selections">
-    <button *ngFor="let item of items | async" class="cs-take-photo-frame-select-button" [ngStyle]="{'background-image' : 'url(' + item.imageUrl + ')'}" (click)="selectFrame(item)">{{item.name}}</button>
-  </div>  
-
-  <!-- <div class="snapshot" *ngIf="webcamImage">
-    <img [src]="webcamImage.imageAsDataUrl"/>
-  </div> -->
-  <canvas #myCanvas></canvas>
 </div>

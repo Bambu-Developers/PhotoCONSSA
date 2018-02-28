@@ -32,10 +32,11 @@ button{
 .button-content{
     display: flex;
     justify-content: space-around;
+    margin: 0 auto;
 }
 
 .camera{
-    margin: 0 0 0 21%;
+    margin: 0 8px 0 21%;
 }
 
 .MF-button{
@@ -123,6 +124,7 @@ button{
     .button-content{
         display: flex;
         justify-content: space-around;
+        margin: 0 auto;
     }
     
     .camera{
