@@ -1,0 +1,55 @@
+.cs-header
+    position: relative
+    width: 98.8%
+    margin: 0 auto
+
+    .cs-confeti
+        max-width: 100%
+        min-width: 100%
+        height: 79px
+
+    .cs-images
+        position: absolute
+        top: 0px
+        width: 100%
+        display: flex
+        align-items: flex-start
+        justify-content: space-between
+
+        .cs-charro
+            width: 3.2%
+            margin-top: 17px
+            margin-left: 1.9%
+
+        .cs-logo
+            width: 15.3%
+            margin-top: 17px
+
+        .cs-maria
+            width: 2.9%
+            margin-top: 21px
+            margin-right: 2.6%
+
+.cs-header-mobile
+    display: none
+    height: 56px
+    justify-content: center
+    align-items: center
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2)
+
+    .cs-logo
+        height: 48px
+
+@media (max-width: 800px )
+    .cs-header
+
+        .cs-confeti
+            height: 56px
+
+@media (max-width: 400px )
+
+    .cs-header
+        display: none
+
+    .cs-header-mobile
+        display: flex
